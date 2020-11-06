@@ -1,8 +1,5 @@
 package com.narval.Models;
 
-import java.security.Timestamp;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,25 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-public class Vinicola {
+@Entity
+@Table(name="PuntoTuristico", schema = "wineplan")
+public class PuntoTuristico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy="vinicola")
-    private Set<Servicio> servicio;
-
-    @Column(name="nombre", length=50, nullable=false, unique=false)
+    @Column(name="nombre", length = 50, nullable = false)
     private String nombre;
-
-    @Column(name="direccion", length=50, nullable=false, unique=false)
+    
+    @Column(name="direccion", length = 100, nullable = false)
     private String direccion;
 
-    @Column(name="codigoPost", length=10, nullable=false, unique=false)
-    private int codigoPost;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Vinicola_idVinicola", referencedColumnName = "id")
+    private Vinicola vinicola;
 
     public int getId() {
         return this.id;
@@ -55,13 +51,12 @@ public class Vinicola {
         this.direccion = direccion;
     }
 
-    public int getCodigoPost() {
-        return this.codigoPost;
+    public Vinicola getVinicola() {
+        return this.vinicola;
     }
 
-    public void setCodigoPost(int codigoPost) {
-        this.codigoPost = codigoPost;
+    public void setVinicola(Vinicola vinicola) {
+        this.vinicola = vinicola;
     }
-//fin
-    
+
 }
