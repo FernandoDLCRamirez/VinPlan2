@@ -21,7 +21,7 @@ public class VinicolaRepository {
 	
 	
 	public Optional<Vinicola> findByName(String nombre) {
-		String query = "SELECT * FROM vinicola WHERE nombre = ?";
+		String query = "SELECT v FROM vinicola v WHERE nombre = ?";
 				
         return jdbcTemplate.queryForObject(query, new Object[]{nombre},
             (rs, rowNum) -> {
@@ -42,7 +42,7 @@ public class VinicolaRepository {
 		
 		List<Vinicola> vinicolas = new ArrayList<Vinicola>();
 						
-		String query = "SELECT * FROM Vinicola";
+		String query = "SELECT v FROM Vinicola v";
 		
 		jdbcTemplate.query(query, new RowCallbackHandler() {
 			@Override

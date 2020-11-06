@@ -17,11 +17,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReservacionEspecificaRepository extends JpaRepository<ReservacionEspecifica, Long> {
-    @Autowired
-
-    @Query("select * from reservacionespecifica where id= ?1")
+    @Query("select rs from reservacionespecifica rs where id= ?1")
     List<ReservacionEspecifica> findById(int id);
     
-    @Query("select * from reservacionespecifica")
+    @Query("select rs from reservacionespecifica rs")
     List<ReservacionEspecifica> findAll();
 }

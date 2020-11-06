@@ -17,9 +17,9 @@ import org.springframework.stereotype.Repository;
 public interface ReservacionGeneral extends JpaRepository<ReservacionGeneral, Long>{
     @Autowired
 
-    @Query("select * from ReservacionGeneral where id= ?1")
+    @Query("select rg from ReservacionGeneral rg where id= ?1")
     List<ReservacionGeneral> findById(int id);
     
-    @Query("select * from ReservacionGeneral")
+    @Query("select rg from ReservacionGeneral rg")
     List<ReservacionGeneral> findAll();
 }
